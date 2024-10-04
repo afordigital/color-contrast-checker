@@ -7,6 +7,8 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { score } from "@/utils";
+import clsx from "clsx";
+import { twMerge } from "tailwind-merge";
 
 type LeaderBoardProps = {
   contrast: number;
@@ -21,25 +23,74 @@ export const LeaderBoard = ({ contrast }: LeaderBoardProps) => {
   const isLargeAccessibleAAA = largeScore === "AAA";
   const isLargeAccessibleAA = largeScore === "AA" || isLargeAccessibleAAA;
 
+  const passStyle =
+    "bg-[#E1FCEF] text-center w-fit text-[#14804A] rounded-full px-4";
+  const failStyle =
+    "bg-[#FAF0F3] text-center w-fit text-[#D12953] rounded-full px-4";
+
   return (
     <Table>
       <TableHeader>
         <TableRow>
           <TableHead>ELEMENT TYPE</TableHead>
-          <TableHead>AA</TableHead>
-          <TableHead>AAA</TableHead>
+          <TableHead className="text-center">AA</TableHead>
+          <TableHead className="text-center">AAA</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
         <TableRow>
           <TableCell className="font-medium">Normal Text</TableCell>
-          <TableCell>{isNormalAccessibleAA ? "Pass" : "Fail"}</TableCell>
-          <TableCell>{isNormalAccessibleAAA ? "Pass" : "Fail"}</TableCell>
+          <TableCell>
+            <p
+              className={twMerge(
+                clsx(
+                  isLargeAccessibleAAA ? passStyle : failStyle,
+                  "mx-auto w-fit"
+                )
+              )}
+            >
+              {isNormalAccessibleAA ? "Pass" : "Fail"}
+            </p>
+          </TableCell>
+          <TableCell>
+            <p
+              className={twMerge(
+                clsx(
+                  isLargeAccessibleAAA ? passStyle : failStyle,
+                  "mx-auto w-fit"
+                )
+              )}
+            >
+              {isNormalAccessibleAAA ? "Pass" : "Fail"}
+            </p>
+          </TableCell>
         </TableRow>
         <TableRow>
           <TableCell className="font-medium">Large Text</TableCell>
-          <TableCell>{isLargeAccessibleAA ? "Pass" : "Fail"}</TableCell>
-          <TableCell>{isLargeAccessibleAAA ? "Pass" : "Fail"}</TableCell>
+          <TableCell>
+            <p
+              className={twMerge(
+                clsx(
+                  isLargeAccessibleAAA ? passStyle : failStyle,
+                  "mx-auto w-fit"
+                )
+              )}
+            >
+              {isLargeAccessibleAA ? "Pass" : "Fail"}
+            </p>
+          </TableCell>
+          <TableCell>
+            <p
+              className={twMerge(
+                clsx(
+                  isLargeAccessibleAAA ? passStyle : failStyle,
+                  "mx-auto w-fit"
+                )
+              )}
+            >
+              {isLargeAccessibleAAA ? "Pass" : "Fail"}
+            </p>
+          </TableCell>
         </TableRow>
         {/* <TableRow>
           <TableCell className="font-medium">
