@@ -17,15 +17,17 @@ export const ColorOptions = ({
   setColorValues,
   contrast,
 }: ColorOptionsProps) => {
-  const handleInput = (event) => {
+  const handleInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setColorValues((prevCamps) => ({ ...prevCamps, [name]: value }));
   };
 
   return (
-    <article className="flex gap-12">
+    <article className="flex gap-8">
       <section className="flex items-center gap-4">
-        <label htmlFor="text-color">Text color</label>
+        <label htmlFor="text-color" className="whitespace-nowrap">
+          Text color
+        </label>
         <div className="relative flex gap-4">
           <Input
             type="color"
@@ -41,13 +43,16 @@ export const ColorOptions = ({
             value={colorValues.text}
             onChange={handleInput}
             placeholder="Add value"
+            maxLength={7}
             className="pl-12"
           />
         </div>
       </section>
 
       <section className="flex items-center gap-4">
-        <label htmlFor="background-color">Background Color</label>
+        <label htmlFor="background-color" className="whitespace-nowrap">
+          Background Color
+        </label>
         <div className="relative flex gap-4">
           <Input
             type="color"
@@ -63,14 +68,15 @@ export const ColorOptions = ({
             value={colorValues.background}
             onChange={handleInput}
             placeholder="Add background"
+            maxLength={7}
             className="pl-12"
           />
         </div>
       </section>
 
       <section className="flex items-center gap-4">
-        <p>Contrast Ratio</p>
-        <p className="text-3xl font-semibold">{contrast.toFixed(2)}</p>
+        <p className="whitespace-nowrap">Contrast Ratio</p>
+        <p className="text-3xl font-semibold">{contrast.toFixed(2)}:1</p>
       </section>
     </article>
   );

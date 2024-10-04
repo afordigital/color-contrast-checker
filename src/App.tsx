@@ -4,8 +4,8 @@ import { ColorOptions } from "./components/ColorOptions";
 import { LeaderBoard } from "./components/LeaderBoard";
 import { AccesibilityExample } from "./components/AccesibilityExample";
 import { hex } from "wcag-contrast";
-import { Github } from "lucide-react";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
+import { Footer } from "./components/Footer";
 
 function App() {
   const [parent] = useAutoAnimate(/* optional config */);
@@ -35,10 +35,7 @@ function App() {
           background={colorValues.background}
         />
       </div>
-      <footer className="flex justify-between w-full pt-12">
-        <p className="font-semibold">Made by Afordin</p>
-        <Github />
-      </footer>
+      <Footer />
     </main>
   );
 }
