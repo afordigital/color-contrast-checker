@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+import defaultTheme from 'tailwindcss/defaultTheme'; 
 export default {
     darkMode: ["class"],
     content: [
@@ -7,15 +8,14 @@ export default {
   ],
   theme: {
   	extend: {
-      customClasses: {
-        customH1: '"scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl'
-      },
   		borderRadius: {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
   		},
-  		colors: {}
+      fontFamily: {
+        sans: ['InterVariable', ...defaultTheme.fontFamily.sans],
+      },
   	}
   },
   plugins: [require("tailwindcss-animate")],

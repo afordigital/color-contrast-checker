@@ -1,22 +1,32 @@
-import { useState } from "react";
+import { Dispatch, SetStateAction } from "react";
 import { Input } from "./ui/input";
 
-export const ColorOptions = () => {
-  const [colorValues, setColorValues] = useState({
-    text: "",
-    background: "",
-  });
+type ColorValues = {
+  text: string;
+  background: string;
+};
 
+type ColorOptionsProps = {
+  colorValues: ColorValues;
+  setColorValues: Dispatch<SetStateAction<ColorValues>>;
+  contrast: number;
+};
+
+export const ColorOptions = ({
+  colorValues,
+  setColorValues,
+  contrast,
+}: ColorOptionsProps) => {
   const handleInput = (event) => {
     const { name, value } = event.target;
     setColorValues((prevCamps) => ({ ...prevCamps, [name]: value }));
   };
 
   return (
-    <div className="flex gap-12">
-      <div className="flex gap-4 items-center">
+    <article className="flex gap-12">
+      <section className="flex items-center gap-4">
         <label htmlFor="text-color">Text color</label>
-        <div className="flex gap-4 relative">
+        <div className="relative flex gap-4">
           <Input
             type="color"
             name="text"
@@ -34,10 +44,11 @@ export const ColorOptions = () => {
             className="pl-12"
           />
         </div>
-      </div>
-      <div className="flex gap-4 items-center">
+      </section>
+
+      <section className="flex items-center gap-4">
         <label htmlFor="background-color">Background Color</label>
-        <div className="flex gap-4 relative">
+        <div className="relative flex gap-4">
           <Input
             type="color"
             name="background"
@@ -55,10 +66,12 @@ export const ColorOptions = () => {
             className="pl-12"
           />
         </div>
-      </div>
-      <div>
+      </section>
+
+      <section className="flex items-center gap-4">
         <p>Contrast Ratio</p>
-      </div>
-    </div>
+        <p className="text-3xl font-semibold">{contrast.toFixed(2)}</p>
+      </section>
+    </article>
   );
 };
