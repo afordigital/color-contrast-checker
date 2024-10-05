@@ -1,4 +1,4 @@
-import { Sun } from "lucide-react";
+import { Moon, Sun } from "lucide-react";
 import GithubIcon from "./icons/Github";
 import { cn } from "@/lib/utils";
 import { Dispatch, SetStateAction } from "react";
@@ -35,13 +35,23 @@ export const Footer = ({ theme, setTheme }: FooterProps) => {
           className="hover:bg-slate-100 dark:hover:bg-[#202020] rounded-[4px]"
         >
           <span className="sr-only">Handle Dark Mode</span>
-          <Sun
-            className={cn(
-              "p-1 cursor-pointer",
-              "hover:rotate-[30deg]",
-              "ease-in-out transition-all duration-300"
-            )}
-          />
+          {theme === "dark" ? (
+            <Sun
+              className={cn(
+                "p-1 cursor-pointer",
+                "hover:rotate-[30deg]",
+                "ease-in-out transition-all duration-300"
+              )}
+            />
+          ) : (
+            <Moon
+              className={cn(
+                "p-1 cursor-pointer",
+                "hover:rotate-[30deg]",
+                "ease-in-out transition-all duration-300"
+              )}
+            />
+          )}
         </button>
 
         <a
