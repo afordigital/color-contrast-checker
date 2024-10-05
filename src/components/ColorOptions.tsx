@@ -25,7 +25,7 @@ export const ColorOptions = ({
   return (
     <article className="flex gap-8">
       <section className="flex items-center gap-4">
-        <label htmlFor="text-color" className="whitespace-nowrap">
+        <label htmlFor="text-color" className="font-medium whitespace-nowrap">
           Text color
         </label>
         <div className="relative flex gap-4">
@@ -44,13 +44,16 @@ export const ColorOptions = ({
             onChange={handleInput}
             placeholder="Add value"
             maxLength={7}
-            className="pl-12"
+            className="pl-12 dark:bg-[#202020]"
           />
         </div>
       </section>
 
       <section className="flex items-center gap-4">
-        <label htmlFor="background-color" className="whitespace-nowrap">
+        <label
+          htmlFor="background-color"
+          className="font-medium whitespace-nowrap"
+        >
           Background Color
         </label>
         <div className="relative flex gap-4">
@@ -69,13 +72,13 @@ export const ColorOptions = ({
             onChange={handleInput}
             placeholder="Add background"
             maxLength={7}
-            className="pl-12"
+            className="pl-12 dark:bg-[#202020]"
           />
         </div>
       </section>
 
       <section className="flex items-center gap-4">
-        <p className="whitespace-nowrap">Contrast Ratio</p>
+        <p className="font-medium whitespace-nowrap">Contrast Ratio</p>
         <p className="text-3xl font-semibold">{contrast.toFixed(2)}:1</p>
       </section>
     </article>

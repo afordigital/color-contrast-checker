@@ -2,11 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  background: #fff;
-  color: #000;
-}
-
 @font-face {
   font-family: InterVariable;
   font-style: normal;

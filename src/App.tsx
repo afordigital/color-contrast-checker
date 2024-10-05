@@ -1,15 +1,16 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import { ColorOptions } from "./components/ColorOptions";
 import { LeaderBoard } from "./components/LeaderBoard";
 import { AccesibilityExample } from "./components/AccesibilityExample";
 import { hex } from "wcag-contrast";
-import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { Footer } from "./components/Footer";
 import { ArrowUpRight } from "lucide-react";
 
+export type Theme = "light" | "dark";
+
 function App() {
-  const [parent] = useAutoAnimate(/* optional config */);
+  const [theme, setTheme] = useState<Theme>("light");
   const [colorValues, setColorValues] = useState({
     text: "#656dff",
     background: "#b1e1ff",
@@ -17,21 +18,26 @@ function App() {
 
   const contrast = hex(colorValues.text, colorValues.background);
 
+  useEffect(() => {
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [theme]);
+
   return (
-    <main
-      ref={parent}
-      className="max-w-5xl min-h-screen flex flex-col gap-[56px] justify-center mx-auto w-full"
-    >
-      <h1>WCAG Contrast Color Checker</h1>
+    <main className="main-container max-w-5xl min-h-screen flex flex-col gap-[56px] justify-center mx-auto w-full">
+      <h1 className="slide-in">WCAG Contrast Color Checker</h1>
       <ColorOptions
         colorValues={colorValues}
         setColorValues={setColorValues}
         contrast={contrast}
       />
       <div>
-        <h2>WCAG Compliance Results</h2>
+        <h2 className="slide-in">WCAG Compliance Results</h2>
         <div className="grid pt-8 grid-cols-2 gap-16">
-          <LeaderBoard contrast={contrast} />
+          <LeaderBoard contrast={contrast} theme={theme} />
           <div>
             <AccesibilityExample
               text={colorValues.text}
@@ -55,7 +61,7 @@ function App() {
           </div>
         </div>
       </div>
-      <Footer />
+      <Footer theme={theme} setTheme={setTheme} />
     </main>
   );
 }

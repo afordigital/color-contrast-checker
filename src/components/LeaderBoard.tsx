@@ -1,3 +1,4 @@
+import { Theme } from "@/App";
 import {
   Table,
   TableBody,
@@ -12,9 +13,10 @@ import { twMerge } from "tailwind-merge";
 
 type LeaderBoardProps = {
   contrast: number;
+  theme: Theme;
 };
 
-export const LeaderBoard = ({ contrast }: LeaderBoardProps) => {
+export const LeaderBoard = ({ contrast, theme }: LeaderBoardProps) => {
   const normalScore = score(contrast, "normal");
   const largeScore = score(contrast, "large");
 
@@ -23,14 +25,19 @@ export const LeaderBoard = ({ contrast }: LeaderBoardProps) => {
   const isLargeAccessibleAAA = largeScore === "AAA";
   const isLargeAccessibleAA = largeScore === "AA" || isLargeAccessibleAAA;
 
-  const passStyle =
-    "bg-[#E1FCEF] text-center w-fit text-[#14804A] rounded-full px-4";
-  const failStyle =
-    "bg-[#FAF0F3] text-center w-fit text-[#D12953] rounded-full px-4";
+  const isDarkMode = theme === "dark";
+
+  const passStyle = isDarkMode
+    ? "bg-[#22312A] text-center w-fit text-[#5BD5BA] border border-[#006239] rounded-full px-2"
+    : "bg-[#E1FCEF] text-center w-fit text-[#14804A] rounded-full px-2";
+
+  const failStyle = isDarkMode
+    ? "bg-[#541C15] text-center w-fit text-[#F9F9F9] border border-[#7F2315] rounded-full px-2"
+    : "bg-[#FAF0F3] text-center w-fit text-[#D12953] rounded-full px-2";
 
   return (
-    <Table>
-      <TableHeader>
+    <Table className="dark:bg-[#151515] dark:text-white">
+      <TableHeader className="dark:bg-[#151515]">
         <TableRow>
           <TableHead>ELEMENT TYPE</TableHead>
           <TableHead className="text-center">AA</TableHead>
