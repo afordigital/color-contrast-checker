@@ -29,8 +29,12 @@ export const ColorOptions = ({
           Text color
         </label>
         <div className="relative flex gap-4">
+          <label htmlFor="picker-text-color" className="sr-only">
+            Picker Text color
+          </label>
           <Input
             type="color"
+            id="picker-text-color"
             name="text"
             value={colorValues.text}
             onChange={handleInput}
@@ -57,8 +61,12 @@ export const ColorOptions = ({
           Background Color
         </label>
         <div className="relative flex gap-4">
+          <label htmlFor="picker-background-color" className="sr-only">
+            Picker Background color
+          </label>
           <Input
             type="color"
+            id="picker-background-color"
             name="background"
             value={colorValues.background}
             onChange={handleInput}
